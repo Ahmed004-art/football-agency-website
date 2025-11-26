@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Matches - Football Agency Sierra Leone</title>
+  <style>
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;line-height:1.4;color:#0b2033;background:#ffffff}
+
+    /* Color palette */
+    :root{
+      --green:#2ecc71;
+      --blue:#2b8cff;
+      --muted:#f4f7fb;
+      --dark:#0b2033;
+      --accent:#1d7a6f;
+    }
+
+    header{border-bottom:4px solid var(--muted);background:#fff;position:sticky;top:0;z-index:100}
+    .container{max-width:1100px;margin:0 auto;padding:18px}
+
+    /* Top nav */
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+    .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    nav ul{list-style:none;display:flex;gap:10px}
+    nav a{display:inline-block;padding:8px 12px;border-radius:6px;color:var(--dark);text-decoration:none;font-weight:600;transition:all 0.2s}
+    nav a:hover{background:var(--muted)}
+    nav a.active{background:var(--blue);color:#fff}
+    .cta{background:var(--blue);color:#fff;padding:8px 14px;border-radius:8px;font-weight:700}
+    .cta:hover{background:#1a6ed8}
+
+    /* Page header */
+    .page-header{background:linear-gradient(180deg, rgba(43,140,255,0.08), rgba(46,204,113,0.04));border:1px solid var(--muted);padding:48px 24px;margin:18px 0;border-radius:8px;text-align:center;position:relative;overflow:hidden}
+    .page-header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="%232b8cff" stroke-width="1" opacity="0.1"/></svg>');opacity:0.3}
+    .page-header h1{font-size:clamp(24px,4vw,38px);color:var(--dark);margin-bottom:12px;position:relative;z-index:1}
+    .page-header p{max-width:680px;margin:0 auto;color:#3a5160;font-size:16px;position:relative;z-index:1}
+
+    /* Hero banner */
+    .hero-banner{width:100%;height:x;background:linear-gradient(135deg,#e6f5ff,#e8fff0);border-radius:8px;margin:24px 0;display:flex;align-items:center;justify-content:center;border:1px solid var(--muted);position:relative;overflow:hidden}
+
+    /* Section headers */
+    .section-header{text-align:center;margin:40px 0 24px;padding:12px;background:var(--muted);border-radius:6px}
+    .section-header h2{font-size:15px;letter-spacing:1px;color:var(--dark);text-transform:uppercase}
+
+    /* Match card */
+    .matches-list{display:flex;flex-direction:column;gap:16px;margin-bottom:32px}
+    .match-card{background:#fff;border:1px solid var(--muted);border-radius:8px;padding:20px;transition:transform 0.2s,box-shadow 0.2s}
+    .match-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+    
+    .match-content{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+    
+    .team{display:flex;align-items:center;gap:12px}
+    .team.away{flex-direction:row-reverse;text-align:right}
+    
+    .team-logo{width:64px;height:64px;background:linear-gradient(135deg,#f3f6fa,#e8f0fe);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid var(--muted);flex-shrink:0}
+    .team-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+  display: block;
+}
+    .team-info h3{font-size:16px;color:var(--dark);margin-bottom:4px}
+    .team-info p{font-size:13px;color:#4b606f}
+    
+    .match-center{text-align:center;min-width:140px}
+    .match-time{font-size:14px;color:var(--blue);font-weight:700;margin-bottom:8px}
+    .match-score{font-size:28px;font-weight:800;color:var(--dark);margin-bottom:4px}
+    .match-status{font-size:12px;color:#4b606f;text-transform:uppercase;letter-spacing:0.5px}
+    .match-vs{font-size:18px;font-weight:700;color:#4b606f}
+    
+    .match-details{display:flex;gap:16px;justify-content:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--muted);font-size:13px;color:#4b606f}
+    .match-details span{display:flex;align-items:center;gap:4px}
+
+    /* Footer */
+    footer{border-top:2px solid var(--muted);margin-top:48px;padding:22px 0;background:linear-gradient(180deg, #fff, #fbfeff)}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;align-items:start}
+    .footer-section h4{margin-bottom:8px;font-size:15px}
+    .footer-section p{color:#4b606f;font-size:14px;line-height:1.6}
+    .footer-section a{color:#4b606f;text-decoration:none;transition:color 0.2s}
+    .footer-section a:hover{color:var(--blue)}
+    .socials{display:flex;gap:10px;margin-top:8px}
+    .social{width:36px;height:36px;border-radius:6px;border:1px solid var(--muted);display:inline-grid;place-items:center;background:#fff;cursor:pointer;transition:all 0.2s}
+    .social:hover{background:var(--muted)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid var(--muted);font-size:13px;color:#4b606f}
+    .footer-links{display:flex;gap:16px}
+    .footer-links a{text-decoration:none;color:#4b606f;transition:color 0.2s}
+    .footer-links a:hover{color:var(--blue)}
+
+    /* Status badges */
+    .status-live{background:#ff4757;color:#fff;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:700;display:inline-block}
+    .status-upcoming{background:#ffa502;color:#fff;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:700;display:inline-block}
+    .status-finished{background:#4b606f;color:#fff;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:700;display:inline-block}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .topbar{flex-direction:column;align-items:flex-start}
+      nav ul{flex-wrap:wrap}
+      .match-content{grid-template-columns:1fr;gap:12px}
+      .team{justify-content:center}
+      .team.away{flex-direction:row;text-align:left}
+      .match-center{padding:12px 0;border-top:1px solid var(--muted);border-bottom:1px solid var(--muted)}
+      .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+    }
+
+    /* Accessibility */
+    a:focus,button:focus{outline:3px solid rgba(43,140,255,0.25);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar" role="banner">
+      <div class="brand" onclick="window.location.href='index.html'">
+        <div class="logo" aria-hidden="true">
+         <img src="images/logo.jpeg" alt="" style="width:100%;height:100%;object-fit:contain" />
+         </div>
+         <div>
+          <div style="font-weight:700">Football Agency</div>
+          <div style="font-size:12px;color:#4b606f">Sierra Leone</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="players.html">Players</a></li>
+          <li><a href="matches.html" class="active">Matches</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="cta" href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Page Header -->
+    <section class="page-header" aria-labelledby="page-title">
+      <h1 id="page-title">Matches & Fixtures</h1>
+      <p>Follow the latest matches featuring our represented players. Stay updated with upcoming fixtures and recent results.</p>
+    </section>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner" role="img" aria-label="Matches banner">
+      <img src="images/matches-bg.jpg" alt="Lions FC logo" style="width:100%;height:100%;object-fit:contain;padding:8px">
+    </div>
+
+    <!-- Upcoming Fixtures -->
+    <div class="section-header">
+      <h2>Upcoming Fixtures</h2>
+    </div>
+
+    <div class="matches-list">
+      <!-- Upcoming Match 1 -->
+      <article class="match-card">
+        <div class="match-content">
+          <div class="team home">
+            <div class="team-logo">
+              <img src="images/image7.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Lions FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+
+          <div class="match-center">
+            <div class="match-time">Tomorrow • 15:00</div>
+            <div class="match-vs">VS</div>
+            <div class="match-status"><span class="status-upcoming">Upcoming</span></div>
+          </div>
+
+          <div class="team away">
+            <div class="team-logo">
+              <img src="images/image8.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Eagles United</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+        </div>
+        <div class="match-details">
+          <span>📍 National Stadium, Freetown</span>
+          <span>🏆 Premier League</span>
+        </div>
+      </article>
+
+      <!-- Upcoming Match 2 -->
+      <article class="match-card">
+        <div class="match-content">
+          <div class="team home">
+            <div class="team-logo">
+              <img src="images/image9.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Stars FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+
+          <div class="match-center">
+            <div class="match-time">Nov 18 • 18:00</div>
+            <div class="match-vs">VS</div>
+            <div class="match-status"><span class="status-upcoming">Upcoming</span></div>
+          </div>
+
+          <div class="team away">
+            <div class="team-logo">
+              <img src="images/image11.jpg" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Royal FC</h3>
+              <p>Cup Match</p>
+            </div>
+          </div>
+        </div>
+        <div class="match-details">
+          <span>📍 Siaka Stevens Stadium</span>
+          <span>🏆 FA Cup</span>
+        </div>
+      </article>
+
+      <!-- Upcoming Match 3 -->
+      <article class="match-card">
+        <div class="match-content">
+          <div class="team home">
+            <div class="team-logo">
+              <img src="images/image10.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Warriors FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+
+          <div class="match-center">
+            <div class="match-time">Nov 20 • 16:30</div>
+            <div class="match-vs">VS</div>
+            <div class="match-status"><span class="status-upcoming">Upcoming</span></div>
+          </div>
+
+          <div class="team away">
+            <div class="team-logo">
+              <img src="images/image9.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>United FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+        </div>
+        <div class="match-details">
+          <span>📍 Bo Stadium</span>
+          <span>🏆 Premier League</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Recent Fixtures -->
+    <div class="section-header">
+      <h2>Recent Fixtures</h2>
+    </div>
+
+    <div class="matches-list">
+      <!-- Recent Match 1 -->
+      <article class="match-card">
+        <div class="match-content">
+          <div class="team home">
+            <div class="team-logo">
+              <img src="images/image7.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Lions FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+
+          <div class="match-center">
+            <div class="match-time">Nov 12</div>
+            <div class="match-score">3 - 1</div>
+            <div class="match-status"><span class="status-finished">Full Time</span></div>
+          </div>
+
+          <div class="team away">
+            <div class="team-logo">
+              <img src="images/image11.jpg" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Kings FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+        </div>
+        <div class="match-details">
+          <span>📍 National Stadium, Freetown</span>
+          <span>🏆 Premier League</span>
+          <span>👥 12,500 attendance</span>
+        </div>
+      </article>
+
+      <!-- Recent Match 2 -->
+      <article class="match-card">
+        <div class="match-content">
+          <div class="team home">
+            <div class="team-logo">
+              <img src="images/image9.png"">
+            </div>
+            <div class="team-info">
+              <h3>Stars FC</h3>
+              <p>League Match </p>
+            </div>
+          </div>
+
+          <div class="match-center">
+            <div class="match-time">Nov 10</div>
+            <div class="match-score">2 - 2</div>
+            <div class="match-status"><span class="status-finished">Full Time</span></div>
+          </div>
+
+          <div class="team away">
+            <div class="team-logo">
+              <img src="images/image8.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Titans FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+        </div>
+        <div class="match-details">
+          <span>📍 Makeni Stadium</span>
+          <span>🏆 Premier League</span>
+          <span>👥 8,200 attendance</span>
+        </div>
+      </article>
+
+      <!-- Recent Match 3 -->
+      <article class="match-card">
+        <div class="match-content">
+          <div class="team home">
+            <div class="team-logo">
+              <img src="images/image9.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Challengers FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+
+          <div class="match-center">
+            <div class="match-time">Nov 8</div>
+            <div class="match-score">1 - 0</div>
+            <div class="match-status"><span class="status-finished">Full Time</span></div>
+          </div>
+
+          <div class="team away">
+            <div class="team-logo">
+              <img src="images/image8.png" alt="">
+            </div>
+            <div class="team-info">
+              <h3>Warriors FC</h3>
+              <p>League Match</p>
+            </div>
+          </div>
+        </div>
+        <div class="match-details">
+          <span>📍 Kenema Stadium</span>
+          <span>🏆 Premier League</span>
+          <span>👥 6,800 attendance</span>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p>123 Stadium Road<br/>Freetown, Sierra Leone<br/>+232 73 213 055<br/>info@football-agency.sl</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <p>
+            <a href="index.html">Home</a><br/>
+            <a href="players.html">Players</a><br/>
+            <a href="matches.html">Matches</a><br/>
+            <a href="about.html">About</a><br/>
+            <a href="contact.html">Contact</a>
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Social Media</h4>
+          <div class="socials">
+            <div class="social" aria-label="Facebook">F</div>
+            <div class="social" aria-label="Twitter">T</div>
+            <div class="social" aria-label="Instagram">I</div>
+            <div class="social" aria-label="YouTube">Y</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>©2024 Football Agency Sierra Leone. All Rights Reserved</div>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About - Football Agency Sierra Leone</title>
+  <style>
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;line-height:1.4;color:#0b2033;background:#ffffff}
+
+    /* Color palette */
+    :root{
+      --green:#2ecc71;
+      --blue:#2b8cff;
+      --muted:#f4f7fb;
+      --dark:#0b2033;
+      --accent:#1d7a6f;
+    }
+
+    header{border-bottom:4px solid var(--muted);background:#fff;position:sticky;top:0;z-index:100}
+    .container{max-width:1100px;margin:0 auto;padding:18px}
+
+    /* Top nav */
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+    .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    nav ul{list-style:none;display:flex;gap:10px}
+    nav a{display:inline-block;padding:8px 12px;border-radius:6px;color:var(--dark);text-decoration:none;font-weight:600;transition:all 0.2s}
+    nav a:hover{background:var(--muted)}
+    nav a.active{background:var(--blue);color:#fff}
+    .cta{background:var(--blue);color:#fff;padding:8px 14px;border-radius:8px;font-weight:700}
+    .cta:hover{background:#1a6ed8}
+
+    /* About hero section */
+    .about-hero{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;background:#fff;border:1px solid var(--muted);border-radius:8px;padding:40px;margin:24px 0}
+    .about-content h1{font-size:clamp(24px,4vw,36px);color:var(--dark);margin-bottom:16px}
+    .about-content p{color:#3a5160;line-height:1.7;margin-bottom:12px}
+    .about-image{width:100%;height:280px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden}
+    .about-image img{width:100%;height:100%;object-fit:contain}
+
+    /* Mission section */
+    .mission-section{background:linear-gradient(180deg, rgba(43,140,255,0.04), rgba(46,204,113,0.02));border:1px solid var(--muted);border-radius:8px;padding:40px;margin:32px 0;text-align:center}
+    .mission-section h2{font-size:18px;letter-spacing:1px;text-transform:uppercase;color:var(--dark);margin-bottom:20px}
+    .mission-section p{max-width:900px;margin:0 auto;color:#3a5160;line-height:1.8;font-size:16px}
+
+    /* Values section */
+    .values-section{margin:40px 0}
+    .section-title{text-align:center;font-size:18px;letter-spacing:1px;text-transform:uppercase;color:var(--dark);margin-bottom:32px}
+    .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .value-card{background:#fff;border:1px solid var(--muted);border-radius:8px;padding:24px;text-align:center;transition:transform 0.2s,box-shadow 0.2s}
+    .value-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+    .value-icon{width:64px;height:64px;margin:0 auto 16px;background:linear-gradient(135deg,var(--blue),var(--green));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px}
+    .value-card h3{font-size:16px;margin-bottom:10px;color:var(--dark)}
+    .value-card p{color:#4b606f;font-size:14px;line-height:1.6}
+
+    /* Services section */
+    .services-section{margin:40px 0}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+    .service-card{background:#fff;border:1px solid var(--muted);border-radius:8px;padding:24px;transition:transform 0.2s,box-shadow 0.2s}
+    .service-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+    .service-card h3{font-size:16px;margin-bottom:12px;color:var(--dark);font-weight:700}
+    .service-card ul{list-style:none;color:#4b606f;font-size:14px;line-height:1.8}
+    .service-card ul li{padding-left:20px;position:relative}
+    .service-card ul li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
+
+    /* Team section */
+    .team-section{margin:40px 0}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .team-card{background:#fff;border:1px solid var(--muted);border-radius:8px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+    .team-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+    .team-photo{width:100%;height:200px;background:linear-gradient(135deg,#e6f5ff,#e8fff0);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--muted);overflow:hidden}
+    .team-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .team-info{padding:20px;text-align:center}
+    .team-info h3{font-size:17px;margin-bottom:6px;color:var(--dark)}
+    .team-info .role{color:var(--blue);font-size:13px;font-weight:600;margin-bottom:10px;text-transform:uppercase}
+    .team-info p{color:#4b606f;font-size:14px;line-height:1.6}
+
+    /* Footer */
+    footer{border-top:2px solid var(--muted);margin-top:48px;padding:22px 0;background:linear-gradient(180deg, #fff, #fbfeff)}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;align-items:start}
+    .footer-section h4{margin-bottom:8px;font-size:15px}
+    .footer-section p{color:#4b606f;font-size:14px;line-height:1.6}
+    .footer-section a{color:#4b606f;text-decoration:none;transition:color 0.2s}
+    .footer-section a:hover{color:var(--blue)}
+    .socials{display:flex;gap:10px;margin-top:8px}
+    .social{width:36px;height:36px;border-radius:6px;border:1px solid var(--muted);display:inline-grid;place-items:center;background:#fff;cursor:pointer;transition:all 0.2s}
+    .social:hover{background:var(--muted)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:18px;border-top:1px solid var(--muted);font-size:13px;color:#4b606f}
+    .footer-links{display:flex;gap:16px}
+    .footer-links a{text-decoration:none;color:#4b606f;transition:color 0.2s}
+    .footer-links a:hover{color:var(--blue)}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .topbar{flex-direction:column;align-items:flex-start}
+      nav ul{flex-wrap:wrap}
+      .about-hero{grid-template-columns:1fr}
+      .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+    }
+
+    /* Accessibility */
+    a:focus,button:focus{outline:3px solid rgba(43,140,255,0.25);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar" role="banner">
+      <div class="brand" onclick="window.location.href='index.html'">
+        <div class="logo" aria-hidden="true">
+         <img src="images/logo.jpeg" alt="" style="width:100%;height:100%;object-fit:contain" />
+         </div>
+         <div>
+          <div style="font-weight:700">Football Agency</div>
+          <div style="font-size:12px;color:#4b606f">Sierra Leone</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="players.html">Players</a></li>
+          <li><a href="matches.html">Matches</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="cta active" href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- About Hero Section -->
+    <section class="about-hero">
+      <div class="about-content">
+        <h1>About Us</h1>
+        <p>Football Agency Sierra Leone is a premier sports management firm dedicated to discovering, developing, and promoting exceptional football talent from Sierra Leone to the global stage.</p>
+        <p>Founded in 2020, we've successfully placed over 50 players in professional clubs across Africa, Europe, and beyond. Our commitment to player welfare, professional development, and ethical representation sets us apart in the industry.</p>
+        <p>We believe every talented player deserves the opportunity to reach their full potential, and we work tirelessly to make those dreams a reality.</p>
+      </div>
+      <div class="about-image">
+        <img src="images/logo.jpeg" alt="Football Agency Sierra Leone Logo" />
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+      <h2>Our Mission</h2>
+      <p>To empower Sierra Leonean football talent by providing world-class representation, comprehensive career management, and access to international opportunities. We are committed to maintaining the highest standards of professionalism, integrity, and player advocacy while contributing to the growth and recognition of Sierra Leone football on the global stage.</p>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <h2 class="section-title">Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <h3>Excellence</h3>
+          <p>We strive for excellence in everything we do, from player development to client service, ensuring the highest standards in all our operations.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Integrity</h3>
+          <p>We conduct our business with honesty, transparency, and ethical practices, building trust with players, clubs, and partners.</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">❤️</div>
+          <h3>Player-First</h3>
+          <p>Our players' well-being, growth, and success are at the heart of every decision we make, ensuring they receive dedicated support throughout their careers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Player Representation</h3>
+          <ul>
+            <li>Contract negotiation</li>
+            <li>Transfer management</li>
+            <li>Career planning & guidance</li>
+            <li>Legal support & protection</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>Talent Development</h3>
+          <ul>
+            <li>Skills training programs</li>
+            <li>Physical conditioning</li>
+            <li>Mental coaching & support</li>
+            <li>Nutrition & wellness guidance</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>Scouting & Recruitment</h3>
+          <ul>
+            <li>Talent identification</li>
+            <li>Player assessments</li>
+            <li>Club connections & trials</li>
+            <li>International placements</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>Marketing & Branding</h3>
+          <ul>
+            <li>Personal brand development</li>
+            <li>Social media management</li>
+            <li>Sponsorship opportunities</li>
+            <li>Media relations</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>Financial Management</h3>
+          <ul>
+            <li>Contract & payment oversight</li>
+            <li>Financial planning advice</li>
+            <li>Investment guidance</li>
+            <li>Tax & legal compliance</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <h3>Post-Career Support</h3>
+          <ul>
+            <li>Transition planning</li>
+            <li>Education & training</li>
+            <li>Coaching opportunities</li>
+            <li>Business development</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <h2 class="section-title">Our Team</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/image23.jpeg" alt="Ahmed Kamara">
+          </div>
+          <div class="team-info">
+            <h3>Ahmed Kamara</h3>
+            <div class="role">Founder & CEO</div>
+            <p>Former professional player with 15 years of experience in international football and sports management.</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo">
+          <img src="images/image21.jpg" alt="Micheal Dauda">
+          </div>
+          <div class="team-info">
+            <h3>Micheal Dauda</h3>
+            <div class="role">Head of Scouting</div>
+            <p>Extensive network across African and European clubs with a keen eye for identifying emerging talent.</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/image22.jpg" alt="Fatmata Koroma">
+          </div>
+          <div class="team-info">
+            <h3>Fatmata Koroma</h3>
+            <div class="role">Player Development Coach</div>
+            <p>UEFA certified coach specializing in technical skills development and youth player mentorship.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p>123 Stadium Road<br/>Freetown, Sierra Leone<br/>+232 73 213 055<br/>info@football-agency.sl</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <p>
+            <a href="index.html">Home</a><br/>
+            <a href="players.html">Players</a><br/>
+            <a href="matches.html">Matches</a><br/>
+            <a href="about.html">About</a><br/>
+            <a href="contact.html">Contact</a>
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Social Media</h4>
+          <div class="socials">
+            <div class="social" aria-label="Facebook">F</div>
+            <div class="social" aria-label="Twitter">T</div>
+            <div class="social" aria-label="Instagram">I</div>
+            <div class="social" aria-label="YouTube">Y</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>©2024 Football Agency Sierra Leone. All Rights Reserved</div>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
