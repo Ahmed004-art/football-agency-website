@@ -3,7 +3,7 @@
 
 ---
 
-##Student Information##
+## Student Information
 **Name:** Ahmed J. Kamara  
 **Class:** DIT1101F  
 **Student ID:** 905005337  
@@ -37,6 +37,7 @@ It demonstrates basic web design principles including layout, navigation, images
 - Organized image and screenshot folders  
 - Simple navigation system  
 - Professional football-themed layout  
+
 
 
 
